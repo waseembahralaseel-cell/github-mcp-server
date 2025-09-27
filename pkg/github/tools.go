@@ -197,6 +197,14 @@ func DefaultToolsetGroup(readOnly bool, getClient GetClientFn, getGQLClient GetG
 			toolsets.NewServerTool(ListProjectFields(getClient, t)),
 		)
 
+	commitComposer := toolsets.NewToolset("commit_composer", "AI-powered commit composition tools for organizing changes into well-structured commits").
+		AddReadTools(
+			toolsets.NewServerTool(AnalyzeRepositoryChanges(getClient, t)),
+			toolsets.NewServerTool(ComposeCommitMessage(getClient, t)),
+			toolsets.NewServerTool(ComposeCommits(getClient, t)),
+			toolsets.NewServerTool(PreviewCommitChanges(getClient, t)),
+		)
+
 	// Add toolsets to the group
 	tsg.AddToolset(contextTools)
 	tsg.AddToolset(repos)
@@ -214,6 +222,7 @@ func DefaultToolsetGroup(readOnly bool, getClient GetClientFn, getGQLClient GetG
 	tsg.AddToolset(gists)
 	tsg.AddToolset(securityAdvisories)
 	tsg.AddToolset(projects)
+	tsg.AddToolset(commitComposer)
 
 	return tsg
 }
