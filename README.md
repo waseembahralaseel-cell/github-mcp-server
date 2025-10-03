@@ -281,6 +281,7 @@ The following sets of tools are available (all are on by default):
 | `context`               | **Strongly recommended**: Tools that provide context about the current user and GitHub context you are operating in |
 | `actions` | GitHub Actions workflows and CI/CD operations |
 | `code_security` | Code security related tools, such as GitHub Code Scanning |
+| `commit_composer` | AI-powered commit composition tools for organizing changes into well-structured commits |
 | `dependabot` | Dependabot tools |
 | `discussions` | GitHub Discussions related tools |
 | `experiments` | Experimental features that are not considered stable yet |
@@ -410,6 +411,42 @@ The following sets of tools are available (all are on by default):
   - `severity`: Filter code scanning alerts by severity (string, optional)
   - `state`: Filter code scanning alerts by state. Defaults to open (string, optional)
   - `tool_name`: The name of the tool used for code scanning. (string, optional)
+
+</details>
+
+<details>
+
+<summary>Commit Composer</summary>
+
+- **analyze_repository_changes** - Analyze repository changes
+  - `base_sha`: Base commit SHA to compare against (optional, will use latest commit if not provided) (string, optional)
+  - `branch`: Branch to analyze changes against (defaults to default branch) (string, optional)
+  - `include_patches`: Whether to include file patches/diffs in the response (boolean, optional)
+  - `owner`: Repository owner (string, required)
+  - `repo`: Repository name (string, required)
+
+- **compose_commit_message** - Compose commit message
+  - `commit_type`: Type of commit for better message generation (string, optional)
+  - `custom_instruction`: Custom instructions for commit message generation (e.g., 'Use conventional commits format', 'Keep messages under 50 characters', 'Focus on business impact') (string, optional)
+  - `files`: Array of file objects with changes to base commit message on (object[], optional)
+  - `owner`: Repository owner (string, required)
+  - `repo`: Repository name (string, required)
+
+- **compose_commits** - Compose commits from changes
+  - `branch`: Branch to compose commits for (defaults to default branch) (string, optional)
+  - `custom_instruction`: Custom instructions for commit composition (e.g., 'Follow conventional commits format', 'Separate features from bug fixes', 'Keep commits atomic') (string, optional)
+  - `files`: Specific files to include in composition. If empty, analyzes all changes (string[], optional)
+  - `include_patches`: Whether to include file diffs in the response for review (boolean, optional)
+  - `owner`: Repository owner (string, required)
+  - `repo`: Repository name (string, required)
+
+- **preview_commit_changes** - Preview commit changes
+  - `branch`: Target branch for the commit (string, optional)
+  - `description`: Detailed commit description (string, optional)
+  - `files`: Files to include in the commit (string[], required)
+  - `message`: Proposed commit message (string, required)
+  - `owner`: Repository owner (string, required)
+  - `repo`: Repository name (string, required)
 
 </details>
 

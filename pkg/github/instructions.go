@@ -53,6 +53,8 @@ func getToolsetInstructions(toolset string) string {
 		return "## Issues\n\nCheck 'list_issue_types' first for organizations to use proper issue types. Use 'search_issues' before creating new issues to avoid duplicates. Always set 'state_reason' when closing issues."
 	case "discussions":
 		return "## Discussions\n\nUse 'list_discussion_categories' to understand available categories before creating discussions. Filter by category for better organization."
+	case "commit_composer":
+		return "## Commit Composer\n\nCommit composition workflow: Start with 'analyze_repository_changes' to understand current state → use 'compose_commits' to organize changes into logical commits → use 'compose_commit_message' for individual commit messages → use 'preview_commit_changes' before finalizing. Support custom instructions for different commit conventions."
 	default:
 		return ""
 	}
